@@ -85,7 +85,6 @@ public class JanelaJogo extends JanelaPadrao{
 		panel.add(cont1);
 		panel.add(panel2);
 		panel.setLayout(new FlowLayout());
-		
 		cont1.setPreferredSize(new Dimension(500, 50));
 		panel2.setPreferredSize(new Dimension(500, 430));
 		add(panel);

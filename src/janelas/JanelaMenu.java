@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 public class JanelaMenu extends JanelaPadrao{
 	
 	private class Ouvinte implements ActionListener, WindowListener{
-
 		public void actionPerformed(ActionEvent evento) {
 			String nameDoBotao = ((JButton)evento.getSource()).getName();
 			if(nameDoBotao.equals("vsp2")) {
