@@ -2,6 +2,7 @@ package janelas;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,11 @@ public class JanelaMenu extends JanelaPadrao{
 			if(nameDoBotao.equals("vsp2")) {
 				setVisible(false);
 				JanelaJogo jogo = new JanelaJogo();
-				jogo.addWindowListener(new Ouvinte());;
+				jogo.addWindowListener(new Ouvinte());//Ouvinte de janela para mudar visibilidade dessa janela menu para visivel quando a outra for fechada.
+			}else if(nameDoBotao.equals("creditos")) {
+				setVisible(false);
+				JanelaCreditos creditos = new JanelaCreditos();
+				creditos.addWindowListener(new Ouvinte());
 			}
 		}
 		public void windowActivated(WindowEvent arg0) {
@@ -55,10 +60,11 @@ public class JanelaMenu extends JanelaPadrao{
 		JPanel panel = new JPanel();
 		//label
 		JLabel texto = new JLabel("Jogo da Velha",JLabel.CENTER);
+		texto.setFont(new Font("Arial", Font.BOLD,50));
 		add(texto);
 		// botões
-		adicionarBotao("P1VSP2","vsp2",Color.red,panel);
-		
+		adicionarBotao("P1VSP2", "vsp2", Color.red, panel);
+		adicionarBotao("Creditos", "creditos", Color.black, panel);
 		add(panel);
 	}
 	public void adicionarBotao(String texto,String name,Color corF,JPanel panel) {

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,11 +21,10 @@ public class JanelaJogo extends JanelaPadrao{
 	private int pontosJog2 = 0;
 	private JButton[][] bottons = new JButton[3][3];
 	private int qtDeJogadas = 0;
-			
+	
 	private class OuvinteBotao implements ActionListener{
-
 		public void actionPerformed(ActionEvent evento) {
-				JButton botao = (JButton)evento.getSource();
+				JButton botao = ((JButton)evento.getSource());
 				String[] pos = botao.getName().split(",");
 				qtDeJogadas += 1;
 				if(vezJog1) {
@@ -39,9 +37,10 @@ public class JanelaJogo extends JanelaPadrao{
 					
 					if(verificador("x")) {
 						vezJog1 = true;
-						placares[0].setText((pontosJog1 += 1)+"");
+						pontosJog1 += 1;
+						placares[0].setText(pontosJog1+"");
 						ResetarBotoes();
-					}	
+					}
 				}else {
 					if(!tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].equals("x")) {
 						tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])] = "o";
@@ -52,7 +51,8 @@ public class JanelaJogo extends JanelaPadrao{
 					
 					if(verificador("o")) {
 						vezJog1 = false;
-						placares[1].setText((pontosJog2 += 1)+"");
+						pontosJog2 += 1;
+						placares[1].setText(pontosJog2+"");
 						ResetarBotoes();
 					}
 				}
@@ -70,22 +70,23 @@ public class JanelaJogo extends JanelaPadrao{
 		
 		setLayout(new GridLayout(1,1));
 		
-		JPanel cont1 = new JPanel();
+		JPanel panel = new JPanel();
+		
+		JPanel panel1 = new JPanel();
 		placares[0] = new JLabel(""+pontosJog1,JLabel.CENTER);
 		placares[1] = new JLabel(""+pontosJog2,JLabel.CENTER);
-		cont1.setLayout(new GridLayout(1,5));
-		cont1.add(new JLabel("Pontos P1",JLabel.CENTER));
-		cont1.add(placares[0]);
-		cont1.add(vez);
-		cont1.add(new JLabel("Pontos P2",JLabel.CENTER));
-		cont1.add(placares[1]);
+		panel1.setLayout(new GridLayout(1,5));
+		panel1.add(new JLabel("Pontos P1",JLabel.CENTER));
+		panel1.add(placares[0]);
+		panel1.add(vez);
+		panel1.add(new JLabel("Pontos P2",JLabel.CENTER));
+		panel1.add(placares[1]);
 		
-		JPanel panel = new JPanel();
 		JPanel panel2 = adicionaBotoesNoPainel();
-		panel.add(cont1);
+		panel.add(panel1);
 		panel.add(panel2);
 		panel.setLayout(new FlowLayout());
-		cont1.setPreferredSize(new Dimension(500, 50));
+		panel1.setPreferredSize(new Dimension(500, 50));
 		panel2.setPreferredSize(new Dimension(500, 430));
 		add(panel);
 	}
@@ -107,6 +108,7 @@ public class JanelaJogo extends JanelaPadrao{
 		}
 		return panel;
 	}
+	
 	public void ResetarBotoes() {
 		for(int i = 0;i < 3;i++) {
 			for(int x = 0;x < 3;x++) {
@@ -119,7 +121,7 @@ public class JanelaJogo extends JanelaPadrao{
 	public boolean verificador(String vez) {
 		//verifica linhas.
 		if(tabuleiro[0][0].equals(vez) && tabuleiro[0][1].equals(vez) && tabuleiro[0][2].equals(vez)) {
-			return true;// se a primeira linha for toda igual o jogador venceu.
+			return true;
 		}else if(tabuleiro[1][0].equals(vez) && tabuleiro[1][1].equals(vez) && tabuleiro[1][2].equals(vez)) {
 			return true;
 		}else if(tabuleiro[2][0].equals(vez) && tabuleiro[2][1].equals(vez) && tabuleiro[2][2].equals(vez)) {
@@ -134,7 +136,7 @@ public class JanelaJogo extends JanelaPadrao{
 		//verifica diagonais.
 		}else if(tabuleiro[0][0].equals(vez) && tabuleiro[1][1].equals(vez) && tabuleiro[2][2].equals(vez)) {
 			return true;
-		}else if(tabuleiro[2][0].equals(vez) && tabuleiro[1][1].equals(vez) && tabuleiro[0][2].equals(vez)) {
+		}else if(tabuleiro[0][2].equals(vez) && tabuleiro[1][1].equals(vez) && tabuleiro[2][0].equals(vez)) {
 			return true;
 		}else {
 			return false;
