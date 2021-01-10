@@ -15,14 +15,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JanelaMenu extends JanelaPadrao{
-	
+	private JanelaMenu janela = this;
 	private class Ouvinte implements ActionListener, WindowListener{
 		public void actionPerformed(ActionEvent evento) {
 			String nameDoBotao = ((JButton)evento.getSource()).getName();
 			if(nameDoBotao.equals("vsp2")) {
 				setVisible(false);
-				JanelaJogo jogo = new JanelaJogo();
+				JanelaVsP2 jogo = new JanelaVsP2(janela);
 				jogo.addWindowListener(new Ouvinte());//Ouvinte de janela para mudar visibilidade dessa janela menu para visivel quando a outra for fechada.
+			}else if(nameDoBotao.equals("vscpu")) {
+				setVisible(false);
+				JanelaVsComputador jogo = new JanelaVsComputador();
+				jogo.addWindowListener(new Ouvinte());
 			}else if(nameDoBotao.equals("creditos")) {
 				setVisible(false);
 				JanelaCreditos creditos = new JanelaCreditos();
@@ -64,6 +68,7 @@ public class JanelaMenu extends JanelaPadrao{
 		add(texto);
 		// botões
 		adicionarBotao("P1VSP2", "vsp2", Color.red, panel);
+		adicionarBotao("P1VSCPU", "vscpu", Color.gray, panel);
 		adicionarBotao("Creditos", "creditos", Color.black, panel);
 		add(panel);
 	}

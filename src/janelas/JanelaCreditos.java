@@ -1,7 +1,8 @@
 package janelas;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,26 +13,31 @@ import javax.swing.JPanel;
 public class JanelaCreditos extends JanelaPadrao{
 	public JanelaCreditos() {
 		super("Creditos");
-		setLayout(new GridLayout(1, 1));
+		setLayout(new GridBagLayout());
 		setVisible(true);
 		
+		//panel
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
 		//labels
-		adicionarLabel("Criador: João Arthur", panel);
+		JLabel mensa = new JLabel("Desenvolvido por Joao Arthur");
+		mensa.setFont(new Font("Arial", Font.BOLD, 20));
+		mensa.setVisible(true);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.anchor = GridBagConstraints.CENTER;
+		panel.add(mensa,gbc);
 		//botao
 		JButton botao = new JButton("Voltar");
 		//ouvinte do botao
+		botao.setFont(new Font("Arial", Font.BOLD, 10));
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		panel.add(botao);
+		botao.setVisible(true);
+		gbc.anchor = GridBagConstraints.CENTER;
+		panel.add(botao,gbc);
 		add(panel);
-	}
-	public void adicionarLabel(String texto, JPanel panel) {
-		JLabel mensa = new JLabel(texto);
-		panel.add(mensa);
 	}
 }

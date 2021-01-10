@@ -10,9 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+public class JanelaJogoPadrao extends JanelaPadrao{
 
-public class JanelaJogo extends JanelaPadrao{
-	
 	private String[][] tabuleiro = new String[3][3];
 	private JLabel vez = new JLabel("vez Jogador 1");
 	private boolean vezJog1 = true;
@@ -22,76 +21,14 @@ public class JanelaJogo extends JanelaPadrao{
 	private JButton[][] bottons = new JButton[3][3];
 	private int qtDeJogadas = 0;
 	
-	private class OuvinteBotao implements ActionListener{
-		public void actionPerformed(ActionEvent evento) {
-				JButton botao = ((JButton)evento.getSource());
-				String[] pos = botao.getName().split(",");
-				qtDeJogadas += 1;
-				if(vezJog1) {
-					if(!tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].equals("o")) {
-						tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])] = "x";
-						vezJog1 = false;
-						botao.setText("X");
-						vez.setText("vez Jogador 2");
-					}
-					
-					if(verificador("x")) {
-						vezJog1 = true;
-						pontosJog1 += 1;
-						placares[0].setText(pontosJog1+"");
-						ResetarBotoes();
-					}
-				}else {
-					if(!tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])].equals("x")) {
-						tabuleiro[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])] = "o";
-						vezJog1 = true;
-						botao.setText("O");
-						vez.setText("vez Jogador 1");
-					}
-					
-					if(verificador("o")) {
-						vezJog1 = false;
-						pontosJog2 += 1;
-						placares[1].setText(pontosJog2+"");
-						ResetarBotoes();
-					}
-				}
-				if(qtDeJogadas==9) {
-					ResetarBotoes();
-					qtDeJogadas = 0;
-				}
-		}		
-	}
 	
-	public JanelaJogo(){
-		super("Tic Toc");
+
+	public JanelaJogoPadrao(String titulo){
+		super(titulo);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setVisible(true);
-		
-		setLayout(new GridLayout(1,1));
-		
-		JPanel panel = new JPanel();
-		
-		JPanel panel1 = new JPanel();
-		placares[0] = new JLabel(""+pontosJog1,JLabel.CENTER);
-		placares[1] = new JLabel(""+pontosJog2,JLabel.CENTER);
-		panel1.setLayout(new GridLayout(1,5));
-		panel1.add(new JLabel("Pontos P1",JLabel.CENTER));
-		panel1.add(placares[0]);
-		panel1.add(vez);
-		panel1.add(new JLabel("Pontos P2",JLabel.CENTER));
-		panel1.add(placares[1]);
-		
-		JPanel panel2 = adicionaBotoesNoPainel();
-		panel.add(panel1);
-		panel.add(panel2);
-		panel.setLayout(new FlowLayout());
-		panel1.setPreferredSize(new Dimension(500, 50));
-		panel2.setPreferredSize(new Dimension(500, 430));
-		add(panel);
 	}
 	
-	public JPanel adicionaBotoesNoPainel() {
+	public JPanel adicionaBotoesNoPainel(ActionListener ouvinte) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 3, 1, 1));
 		tabuleiro = new String[3][3];
@@ -101,7 +38,7 @@ public class JanelaJogo extends JanelaPadrao{
 				bottons[i][x] = new JButton();
 				bottons[i][x].setName(i + "," + x);
 				bottons[i][x].setOpaque(true);
-				bottons[i][x].addActionListener(new OuvinteBotao());
+				bottons[i][x].addActionListener(ouvinte);
 				
 				panel.add(bottons[i][x]);
 			}
@@ -114,6 +51,8 @@ public class JanelaJogo extends JanelaPadrao{
 			for(int x = 0;x < 3;x++) {
 				tabuleiro[i][x]="-";
 				bottons[i][x].setText("");
+				bottons[i][x].setBackground(null);
+				bottons[i][x].setEnabled(true);
 			}
 		}
 	}
@@ -141,5 +80,68 @@ public class JanelaJogo extends JanelaPadrao{
 		}else {
 			return false;
 		}
+	}
+	public String[][] getTabuleiro() {
+		return tabuleiro;
+	}
+
+	public void setTabuleiro(String[][] tabuleiro) {
+		this.tabuleiro = tabuleiro;
+	}
+
+	public JLabel getVez() {
+		return vez;
+	}
+
+	public void setVez(JLabel vez) {
+		this.vez = vez;
+	}
+
+	public boolean isVezJog1() {
+		return vezJog1;
+	}
+
+	public void setVezJog1(boolean vezJog1) {
+		this.vezJog1 = vezJog1;
+	}
+
+	public JLabel[] getPlacares() {
+		return placares;
+	}
+
+	public void setPlacares(JLabel[] placares) {
+		this.placares = placares;
+	}
+
+	public int getPontosJog1() {
+		return pontosJog1;
+	}
+
+	public void setPontosJog1(int pontosJog1) {
+		this.pontosJog1 = pontosJog1;
+	}
+
+	public int getPontosJog2() {
+		return pontosJog2;
+	}
+
+	public void setPontosJog2(int pontosJog2) {
+		this.pontosJog2 = pontosJog2;
+	}
+
+	public JButton[][] getBottons() {
+		return bottons;
+	}
+
+	public void setBottons(JButton[][] bottons) {
+		this.bottons = bottons;
+	}
+
+	public int getQtDeJogadas() {
+		return qtDeJogadas;
+	}
+
+	public void setQtDeJogadas(int qtDeJogadas) {
+		this.qtDeJogadas = qtDeJogadas;
 	}
 }
