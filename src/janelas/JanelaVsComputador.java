@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JanelaVsComputador extends JanelaJogoPadrao{
@@ -68,6 +69,14 @@ public class JanelaVsComputador extends JanelaJogoPadrao{
 				setVezJog1(true);
 				ResetarBotoes();
 				setQtDeJogadas(0);
+			}
+			//verifica se a pontuaçao de um dos dois players chegarem em 3 pontos.
+			if(getPontosJog1()==3) {
+				JOptionPane.showMessageDialog(null, "O jogador 1 Venceu!");
+				dispose();
+			}else if(getPontosJog2()==3) {
+				JOptionPane.showMessageDialog(null, "O Computador Venceu!");
+				dispose();
 			}
 		}		
 	}

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -59,6 +60,14 @@ public class JanelaVsP2 extends JanelaJogoPadrao{
 				if(getQtDeJogadas()==9) {
 					ResetarBotoes();
 					setQtDeJogadas(0);
+				}
+				//verifica se a pontuaçao de um dos dois players chegarem em 3 pontos.
+				if(getPontosJog1()==3) {
+					JOptionPane.showMessageDialog(null, "O jogador 1 Venceu!");
+					dispose();
+				}else if(getPontosJog2()==3) {
+					JOptionPane.showMessageDialog(null, "O jogador 2 Venceu!");
+					dispose();
 				}
 		}		
 	}
