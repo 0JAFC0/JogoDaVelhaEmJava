@@ -3,6 +3,8 @@
 ### Descrição:
 Jogo da velha feito em java utilizandos bibliotecas padrões java.
 
+Foram implementadas regras para o jogo para se quem chegar primeiro nos 3 pontos ganha.
+
 ### Status do Projeto
 Em Construção
 
