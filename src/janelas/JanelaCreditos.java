@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JanelaCreditos extends JanelaPadrao{
+	
 	public JanelaCreditos() {
 		super("Creditos");
 		setLayout(new GridBagLayout());

@@ -29,7 +29,7 @@ public class JanelaVsP2 extends JanelaJogoPadrao{
 						botao.setEnabled(false);
 						getVez().setText("vez Jogador 2");
 					}
-					
+					//verifica se o jogador 1 acertou alguma jogada.
 					if(verificador("x")) {
 						setVezJog1(true);;
 						setPontosJog1(getPontosJog1() + 1);
@@ -55,6 +55,7 @@ public class JanelaVsP2 extends JanelaJogoPadrao{
 						ResetarBotoes();
 					}
 				}
+				//verifica se deu velha.
 				if(getQtDeJogadas()==9) {
 					ResetarBotoes();
 					setQtDeJogadas(0);

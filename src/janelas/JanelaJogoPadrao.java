@@ -21,8 +21,6 @@ public class JanelaJogoPadrao extends JanelaPadrao{
 	private JButton[][] bottons = new JButton[3][3];
 	private int qtDeJogadas = 0;
 	
-	
-
 	public JanelaJogoPadrao(String titulo){
 		super(titulo);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

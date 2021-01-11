@@ -71,6 +71,7 @@ public class JanelaVsComputador extends JanelaJogoPadrao{
 			}
 		}		
 	}
+	
 	public JanelaVsComputador() {
 		super("Tic Tac Toe");
 		setLayout(new GridLayout(1,1));

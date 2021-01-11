@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JanelaMenu extends JanelaPadrao{
+	
 	private JanelaMenu janela = this;
 	private class Ouvinte implements ActionListener, WindowListener{
 		public void actionPerformed(ActionEvent evento) {
